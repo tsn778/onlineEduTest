@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.tsn.mapper.WorkMapper">
+
+    <select id="getWorks" resultType="Work">
+        select * from tb_work;
+    </select>
+
+    <select id="getWorkById" resultType="Work" parameterType="int">
+        select * from tb_work where wid = #{wid};
+    </select>
+    <select id="getWorkByName" resultType="Work" parameterType="String">
+        select * from tb_work where workname = #{workname};
+    </select>
+    <insert id="addWork" parameterType="Work">
+        insert into tb_work(workname,author,message,address,picpath)
+        values (#{workname},#{author},#{message},#{address},#{picpath});
+    </insert>
+    <delete id="deleteWork" parameterType="Work">
+        delete from tb_work where wid = #{wid};
+    </delete>
+    <update id="updateWork" parameterType="Work">
+        Update tb_work
+        set workname=#{workname},author=#{author},message=#{message},address=#{address},picpath=#{picpath}
+        where wid = #{wid};
+
+    </update>
+</mapper>

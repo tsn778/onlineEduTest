@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.tsn.mapper.TeacherMapper">
+
+    <select id="getTeachers" resultType="Teacher">
+        select * from tb_teacher;
+    </select>
+
+    <select id="getTeacherById" resultType="Teacher" parameterType="int">
+        select * from tb_teacher where Id = #{id};
+    </select>
+    <select id="getTeacherByName" resultType="Teacher" parameterType="String">
+        select * from tb_teacher where tchname = #{tchname};
+    </select>
+    <insert id="addTeacher" parameterType="Teacher">
+        insert into tb_teacher(tchname,tchgender,tchinfo,duty,portrait)
+        values (#{tchname},#{tchgender},#{tchinfo},#{duty},#{portrait});
+    </insert>
+    <delete id="deleteTeacher" parameterType="Teacher">
+        delete from tb_teacher where Id = #{id};
+    </delete>
+    <update id="updateTeacher" parameterType="Teacher">
+        Update tb_teacher
+        set tchname=#{tchname},tchgender=#{tchgender},tchinfo=#{tchinfo},duty=#{duty},portrait=#{portrait}
+            where Id = #{id};
+
+    </update>
+</mapper>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" type="text/css" th:href="@{assets/css/play.css}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+</head>
+<body style="background-image: url('/img/bg10.jpg')">
+
+
+
+
+
+        <section class="public_width" style="margin-top: 50px">
+            <dl class="video_con">
+                <dt class="video_con_title">视频播放
+                    <div style="float: right;margin-right: 30px" ><a  th:href="@{/index}" class="btn btn-outline-info">返回首页</a><a th:href="@{/viewsubject(subid=${subject.subid})}" class="btn btn-outline-info" style="margin-left: 10px">返回课程</a></div>
+                </dt>
+
+                <figure class="video_con_show tab">
+                    <div class="video_bofang tab-box">
+                        <div class="video_con_show_con" th:each="video:${videos}">
+                            <video width="900" height="630" controls>
+                                <source th:src="${video.filePath}" type="video/mp4">
+                            </video>
+                        </div>
+
+                    </div>
+                    <figcaption class="video_show_zs">
+                        <div class="video_show_zj">
+
+                            <p class="video_show_zj_js">
+                                <b class="video_show_zj_name">[[${subject.subname}]]</b>
+
+                            </p>
+                        </div>
+                        <span class="video_show_title">播放列表</span>
+                        <ul class="video_show_con tab-menu">
+                            <li class="video_show_list" th:each="video:${videos}"><span>[[${video.name}]]</span></li>
+
+                        </ul>
+                    </figcaption>
+                </figure>
+            </dl>
+        </section>
+
+
+
+
+
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script>
+    $().ready(function(){
+        $(".tab-menu li").click(function(){
+            //通过 .index()方法获取元素下标，从0开始，赋值给某个变量
+            var _index = $(this).index();
+            //让内容框的第 _index 个显示出来，其他的被隐藏
+            $(".tab-box>div").eq(_index).show().siblings().hide();
+            //改变选中时候的选项框的样式，移除其他几个选项的样式
+            $(this).addClass("change").siblings().removeClass("change");
+        });
+    });
+
+</script>
+
+</body>
+</html>

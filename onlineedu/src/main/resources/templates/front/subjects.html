@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:with="title='课程列表',active='subjects'">
+<head th:replace="front/header::headerFragment(${title},${active})">
+
+</head>
+<body>
+
+<header class="site-header sticky-top py-3" th:replace="front/header::header-body">
+
+</header>
+<main>
+
+
+
+    <div class="container py-3">
+        <img src="/img/poster1.jpg" class="d-block w-100 img-thumbnail " alt="...">
+
+        <div class="py-5"><h4>分类：
+            <a type="button" class="btn btn-outline-primary" th:href="@{/subjects}">全部</a>
+            <a type="button" class="btn btn-outline-primary" th:href="@{/subjects(subtype=1)}">默认</a>
+            <a type="button" class="btn btn-outline-primary" th:href="@{/subjects(subtype=3)}">自学课</a>
+
+            <a type="button" class="btn btn-outline-primary" th:href="@{/subjects(subtype=2)}">班级课程</a>
+
+            <br>
+            <hr>
+            筛选：
+            <button type="button" class="btn btn-outline-primary">最新</button>
+            <button type="button" class="btn btn-outline-primary">默认</button>
+
+        </h4>
+        </div>
+        <div class="row py-4">
+            <div class="col-md-3 py-3" th:each="vs:${vsubjects}">
+                <div class="card " style="width: 14rem;background-color:rgba(255,255,255,0.8);">
+                    <img th:src="${vs.getCoverpath()}" class="card-img-top" style="height: 140px" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title" >[[${vs.subname}]]</h5>
+                        <hr>
+                        <p class="card-text" style="display:-webkit-box;-webkit-line-clamp:3 ;-webkit-box-orient: vertical;overflow: hidden;">[[${vs.introduction}]]</p>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">课时[[${vs.period}]]节</li>
+
+                    </ul>
+                    <div class="card-body">
+                        <a th:href="@{/viewsubject(subid=${vs.subid})}" class="card-link">点击了解详情</a>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+
+</main>
+
+<footer th:replace="front/header::header-footer"></footer>
+
+
+<script th:src="@{assets/dist/js/bootstrap.bundle.min.js}"></script>
+<script th:src="@{assets/dist/js/bootstrap.js}"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.tsn.mapper.ClassMapper">
+
+    <select id="getClasses" resultType="Class">
+        select * from tb_class;
+    </select>
+
+    <select id="getClassById" resultType="Class" parameterType="int">
+        select * from tb_class where cid = #{cid};
+    </select>
+    <select id="getClassByName" resultType="Class" parameterType="String">
+        select * from tb_class where classname = #{classname};
+    </select>
+    <insert id="addClass" parameterType="Class">
+        insert into tb_class(classname,teacher,period,introduction,classinfo,state,starttime,regtime,regend,coverpath,price,workis)
+        values (#{classname},#{teacher},#{period},#{introduction},#{classinfo},#{state},#{starttime},#{regtime},#{regend},#{coverpath},#{price},#{workis});
+    </insert>
+    <delete id="deleteClass" parameterType="Class">
+        delete from tb_class where cid = #{cid};
+    </delete>
+    <update id="updateClass" parameterType="Class">
+        Update tb_class
+        set classname=#{classname},teacher=#{teacher},period=#{period},introduction=#{introduction},classinfo=#{classinfo},state=#{state},starttime=#{starttime},regtime=#{regtime},regend=#{regend},coverpath=#{coverpath},price=#{price},workis=#{workis}
+        where cid = #{cid};
+
+    </update>
+</mapper>

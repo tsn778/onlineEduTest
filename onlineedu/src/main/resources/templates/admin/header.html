@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html  lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="headerFragment(title,active)">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title><th:block th:text="${title!=null?title:'博客后台'}+'- My Blog'"></th:block></title>
+    <link rel="stylesheet" th:href="@{/adminsrc/css/layui.css}">
+
+</head>
+<body class="layui-layout-body">
+  <div th:fragment="header-body">
+    <div class="layui-header">
+        <div class="layui-logo">
+            <img  th:src="@{/img/icon.png}" height="35">
+            后台</div>
+        <!-- 头部区域（可配合layui已有的水平导航） -->+
+        <ul class="layui-nav layui-layout-left">
+            <li class="layui-nav-item"><a href="">控制台</a></li>
+            <li class="layui-nav-item"><a href="">商品管理</a></li>
+            <li class="layui-nav-item"><a href="">用户</a></li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">其它系统</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="">邮件管理</a></dd>
+                    <dd><a href="">消息管理</a></dd>
+                    <dd><a href="">授权管理</a></dd>
+                </dl>
+            </li>
+        </ul>
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item">
+                <a href="javascript:;" th:text="${session.admin.getUsername()}">
+                    <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
+
+                </a>
+                <dl class="layui-nav-child">
+                    <dd><a href="">基本资料</a></dd>
+                    <dd><a href="">安全设置</a></dd>
+                    <dd><a href="">切换账号</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item"><a th:href="@{/logout}">退了</a></li>
+        </ul>
+    </div>
+
+    <div class="layui-side layui-bg-black">
+        <div class="layui-side-scroll">
+            <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+            <ul class="layui-nav layui-nav-tree"  lay-filter="test">
+                <li th:class="${active}=='home'?'layui-nav-item layui-nav-itemed layui-bg-green':'layui-nav-item'">
+                    <a th:href="@{/admin/index}"
+                       >主页面</a></li>
+                <li th:class="${active}=='user'?'layui-nav-item layui-nav-itemed layui-bg-green':'layui-nav-item'">
+                    <a th:href="@{/admin/getuser}"
+                        >用户管理</a></li>
+                <li class="layui-nav-item layui-nav-itemed">
+                    <a class="" href="javascript:;">班级管理</a>
+                    <dl class="layui-nav-child">
+                        <dd th:class="${active}=='classedit'?'layui-this':''"><a th:href="@{/admin/editclass}">添加班级</a></dd>
+                        <dd th:class="${active}=='class'?'layui-this':''"><a th:href="@{/admin/class}">查看管理</a></dd>
+
+                    </dl>
+                </li>
+                <li class="layui-nav-item layui-nav-itemed">
+                    <a href="javascript:;">课程管理</a>
+                    <dl class="layui-nav-child">
+                        <dd th:class="${active}=='subjectedit'?'layui-this':''"><a th:href="@{/admin/editSubject}">添加课程</a></dd>
+                        <dd th:class="${active}=='subject'?'layui-this':''"><a th:href="@{/admin/subject}">查看管理</a></dd>
+
+                    </dl>
+                </li>
+                <li class="layui-nav-item layui-nav-itemed">
+                    <a href="javascript:;">讲师管理</a>
+                    <dl class="layui-nav-child">
+                        <dd th:class="${active}=='teacheredit'?'layui-this':''"><a th:href="@{/admin/editteacher}">添加讲师</a></dd>
+                        <dd th:class="${active}=='teacher'?'layui-this':''"><a th:href="@{/admin/teacher}">查看管理</a></dd>
+
+                    </dl>
+                </li>
+                <li class="layui-nav-item layui-nav-itemed">
+                    <a href="javascript:;">优秀作品</a>
+                    <dl class="layui-nav-child">
+                        <dd th:class="${active}=='workedit'?'layui-this':''"><a th:href="@{/admin/editwork}">添加作品</a></dd>
+                        <dd th:class="${active}=='work'?'layui-this':''"><a th:href="@{/admin/work}">查看管理</a></dd>
+
+                    </dl>
+                </li>
+                <li class="layui-nav-item layui-nav-itemed">
+                    <a href="javascript:;">文章资讯</a>
+                    <dl class="layui-nav-child">
+                        <dd th:class="${active}=='articleedit'?'layui-this':''"><a th:href="@{/admin/editarticle}">添加</a></dd>
+                        <dd th:class="${active}=='article'?'layui-this':''"><a th:href="@{/admin/article}">查看管理</a></dd>
+
+                    </dl>
+                </li>
+                <li th:class="${active}=='enroll'?'layui-nav-item layui-nav-itemed layui-bg-green':'layui-nav-item'"><a th:href="@{/admin/enroll}">报名管理</a></li>
+                <li th:class="${active}=='reply'?'layui-nav-item layui-nav-itemed layui-bg-green':'layui-nav-item'"><a th:href="@{/admin/reply}">留言管理</a></li>
+
+            </ul>
+        </div>
+    </div>
+  </div>
+</body>
+</html>

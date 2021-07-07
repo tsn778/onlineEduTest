@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:with="title='注册用户',active='register'">
+<head th:replace="front/header::headerFragment(${title},${active})">
+
+</head>
+<body>
+
+<header class="site-header sticky-top py-3" th:replace="front/header::header-body">
+
+</header>
+<main>
+
+
+
+    <div class="container py-3">
+        <img src="/img/poster6.jpg" class="d-block w-100 img-thumbnail " alt="...">
+
+
+    </div>
+    <div class="container">
+        <div class="py-5 text-center">
+            <h2>注册</h2>
+            <p class="lead">欢迎来到简.课,期望我们互相学习,互相帮忙,进取努力,共同提高!</p>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <h4 class="mb-3">请填写</h4>
+                <form class="needs-validation" id="FormID">
+
+
+                    <div class="mb-3">
+                        <label for="username">用户名</label>
+                        <div class="input-group">
+
+                            <input type="text" class="form-control" id="username" name="username" placeholder="Username" required="">
+                            <div class="invalid-feedback" style="width: 100%;">
+                                请输入你的用户名
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label>密码</label>
+                        <input type="password" class="form-control" name="password" required="required"
+                               placeholder="请输入密码" id="ipwd">
+                        <div class="invalid-feedback">
+                            密码不准为空
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label>确认密码</label>
+                        <input type="password" class="form-control"  required="required"
+                               placeholder="请再次输入密码" id="i2pwd" onblur="check()">
+
+                        <div class="invalid-feedback" id="pwd">
+
+                        </div>
+                    </div>
+                    <h4 class="mb-3">性别</h4>
+
+                    <div class="d-block my-3">
+                        <div class="custom-control custom-radio">
+                            <input id="credit" name="gender" type="radio" class="custom-control-input" value="男"  checked="" required="">
+                            <label class="custom-control-label" for="credit">男</label>
+                        </div>
+                        <div class="custom-control custom-radio">
+                            <input id="debit" name="gender" type="radio" class="custom-control-input" value="女"  required="">
+                            <label class="custom-control-label" for="debit">女</label>
+                        </div>
+
+                    </div>
+                    <div class="mb-3">
+                        <label for="email">Email <span class="text-muted">(Optional)</span></label>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="you@example.com">
+                        <div class="invalid-feedback">
+                            Please enter a valid email address for shipping updates.
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label >手机号码</label>
+                        <input type="text" class="form-control" id="address" name="phonenumber">
+
+                    </div>
+                    <div class="form-group">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+                            <label class="form-check-label" for="invalidCheck">
+                                同意协议和选项
+                            </label>
+                            <div class="invalid-feedback">
+                                您必须同意才能提交。
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr class="mb-4">
+                    <button class="btn btn-primary btn-lg btn-block" type="button" onclick="register()">注册</button>
+                    <button class="btn  btn-lg btn-block" type="reset" >重置</button>
+
+                </form>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="py-5">
+
+    </div>
+</main>
+
+<footer th:replace="front/header::header-footer"></footer>
+
+
+<script th:src="@{assets/dist/js/bootstrap.bundle.min.js}"></script>
+<script th:src="@{assets/dist/js/bootstrap.js}"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+<script th:src="@{assets/js/jquery-3.2.1.min.js}"></script>
+<script type="text/javascript">
+
+    function check(){
+                   var boo=$('#ipwd').val()==$('#i2pwd').val();
+                    if (boo) {
+                         return true;
+                      }else{
+                           alert('两次密码不一致,请重新输入');
+                        $('#i2pwd').val("");
+                    }
+
+             }
+    function register() {
+        var data=$('#FormID').serialize();
+//序列化获得表单数据，结果为：user_id=12&user_name=John&user_age=20
+
+        // var submitData=decodeURIComponent(data,true);
+//submitData是解码后的表单数据，结果同上
+
+        // $.ajax({
+        //     url:'/registeruser',
+        //     type:'POST',
+        //     data:submitData,
+        //     cache:false,//false是不缓存，true为缓存
+        //     async:true,//true为异步，false为同步
+        //     beforeSend:function(){
+        //         //请求前
+        //     },
+        //     success:function(result){
+        //
+        //         //请求成功时
+        //         if(result.code==1){
+        //             alert(result.msg);
+        //             location.reload();
+        //         }
+        //         else
+        //         {
+        //         alert(result.msg);
+        //         location.href="/login";
+        //         }
+        //     },
+        //     complete:function(){
+        //         //请求结束时
+        //     },
+        //     error:function(){
+        //         //请求失败时
+        //     }
+        // });
+        $.ajax({
+            //几个参数需要注意一下
+            type: "POST",//方法类型
+            dataType: "json",//预期服务器返回的数据类型
+            url: "/registeruser" ,//url
+            data: data,
+            success: function (result) {
+                console.log(result);//打印服务端返回的数据(调试用)
+                if(result.code==1){
+                                alert(result.msg);
+                                location.reload();
+                            }
+                            else
+                            {
+                            alert(result.msg);
+                            location.href="/login";
+                            }
+            },
+            error : function() {
+                alert("异常！");
+            }
+        });
+        return false;
+    }
+
+</script>
+
+</body>
+</html>

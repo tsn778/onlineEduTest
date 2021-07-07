@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.tsn.mapper.UserMapper">
+
+    <select id="getUsers" resultType="User">
+        select * from tb_user;
+    </select>
+
+    <select id="getUserById" resultType="User" parameterType="int">
+        select * from tb_user where uid = #{uid};
+    </select>
+    <select id="getUserByAccount" resultType="User" parameterType="String">
+        select * from tb_user where account = #{account};
+    </select>
+   <insert id="addUser" parameterType="User">
+       insert into tb_user(account,password,username,gender,email,phonenumber,role,portrait)
+       values (#{account},#{password},#{username},#{gender},#{email},#{phonenumber},#{role},#{portrait});
+   </insert>
+    <delete id="deleteUser" parameterType="User">
+        delete from tb_user where uid= #{uid};
+    </delete>
+    <update id="updateUser" parameterType="User">
+        Update tb_user
+        set account=#{account},password=#{password},username=#{username},gender=#{gender},email=#{email},phonenumber=#{phonenumber},role=#{role},portrait=#{portrait}
+        where uid= #{uid};
+    </update>
+</mapper>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.tsn.mapper.EnrollMapper">
+
+    <select id="getEnrolls" resultType="Enroll">
+        select * from tb_enroll;
+    </select>
+
+    <select id="getEnrollById" resultType="Enroll" parameterType="int">
+        select * from tb_enroll where id = #{id};
+    </select>
+    <select id="getEnrollByName" resultType="Enroll" parameterType="String">
+        select * from tb_enroll where name = #{name};
+    </select>
+    <insert id="addEnroll" parameterType="Enroll">
+        insert into tb_enroll(name,classes,age,gender,phonenumber,qq,email,address,state,basics,work,account)
+        values (#{name},#{classes},#{age},#{gender},#{phonenumber},#{qq},#{email},#{address},#{state},#{basics},#{work},#{account});
+    </insert>
+    <delete id="deleteEnroll" parameterType="Enroll">
+        delete from tb_enroll where id = #{id};
+    </delete>
+    <update id="updateEnroll" parameterType="Enroll">
+        Update tb_enroll
+        set name=#{name},classes=#{classes},age=#{age},gender=#{gender},phonenumber=#{phonenumber},qq=#{qq},email=#{email},address=#{address},state=#{state},basics=#{basics},work=#{work},account=#{account}
+        where id = #{id};
+
+    </update>
+</mapper>

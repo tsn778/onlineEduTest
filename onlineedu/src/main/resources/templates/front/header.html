@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="headerFragment(title,active)">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.79.0">
+    <title><th:block th:text="${title!=null?title:'简.课'}"></th:block></title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/product/">
+
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+
+
+    <!-- Custom styles for this template -->
+    <link th:href="@{assets/css/product.css}" rel="stylesheet">
+</head>
+<body>
+
+<header class="site-header sticky-top py-3" th:fragment="header-body">
+    <nav class="d-flex flex-column flex-md-row justify-content-between" style="text-align: center;width: 1200px;margin:0 auto;">
+        <a class="py-0" th:href="@{/index}" aria-label="Product">
+            <img th:src="@{img/icon.png}" width="150" height="45" fill="none" stroke="currentColor"
+                 stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="d-block mx-auto" role="img"
+                 viewBox="0 0 24 24"><title>Product</title>
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16L3.95 6.06M14.31 16H2.83m13.79-4l-5.74 9.94"/>
+            </svg>
+        </a>
+        <a th:class="${active}=='index'?'py-2 d-none d-md-inline-block acta':'py-2 d-none d-md-inline-block sitea'"
+           th:href="@{/index}">首页</a>
+        <a th:class="${active}=='subjects'?'py-2 d-none d-md-inline-block acta':'py-2 d-none d-md-inline-block sitea'"
+           th:href="@{/subjects}">课程介绍</a>
+        <a th:class="${active}=='classes'?'py-2 d-none d-md-inline-block acta':'py-2 d-none d-md-inline-block sitea'"
+           th:href="@{/classes}">招生信息</a>
+        <a th:class="${active}=='works'?'py-2 d-none d-md-inline-block acta':'py-2 d-none d-md-inline-block sitea'"
+           th:href="@{/viewwork}">优秀作品</a>
+        <a th:class="${active}=='reply'?'py-2 d-none d-md-inline-block acta':'py-2 d-none d-md-inline-block sitea'"
+           th:href="@{/reply}">留言板</a>
+        <a th:class="${active}=='material'?'py-2 d-none d-md-inline-block acta':'py-2 d-none d-md-inline-block sitea'"
+           th:href="@{/article}">素材与咨讯</a>
+        <a th:class="${active}=='aboutme'?'py-2 d-none d-md-inline-block acta':'py-2 d-none d-md-inline-block sitea'"
+           th:href="@{/index}">关于我们</a>
+
+        <div class="form-inline my-2 my-lg-0" th:if="${session.admin}!=null">
+            <img src="/img/class1.jpg" class="rounded-circle " alt="..." width="45" height="45">
+            <div class="dropdown">
+                <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                        th:text="${session.admin.username}">
+
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" th:href="@{/personal}">个人中心</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" th:href="@{/login}">切换账号</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" th:href="@{/frontlogout}">退出</a>
+                </div>
+            </div>
+        </div>
+        <form class="form-inline " action="/searchPage" method="get">
+
+            <div class="form-group mx-sm-3 mb-2">
+
+                <input type="text" name="word" class="form-control"  style="width: 150px" id="inputPassword2" placeholder="搜索">
+            </div>
+            <button type="submit" class="btn btn-outline-primary mb-2">搜索</button>
+        </form>
+        <div class="form-inline mb-2" th:if="${session.admin}==null">
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <a th:href="@{/register}" class=" py-2 btn btn-outline-secondary">注册</a>
+                <a th:href="@{/login}" class="py-2 btn btn-outline-success">登录</a>
+
+            </div>
+        </div>
+
+
+
+    </nav>
+
+</header>
+
+<div th:fragment="header-footer">
+    <footer class="py-2" style="    background-color: #272938;
+color: #7286a0;
+line-height: 24px;">
+
+        <div style="text-align: center;width: 800px;margin:0 auto;margin-top: 30px">
+            <a class="py-0" th:href="@{/index}" aria-label="Product">
+                <img th:src="@{img/icon1.png}" width="150" height="45" fill="none" stroke="currentColor"
+                     stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="d-block mx-auto" role="img"
+                     viewBox="0 0 24 24"><title>Product</title>
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16L3.95 6.06M14.31 16H2.83m13.79-4l-5.74 9.94"/>
+                </svg>
+            </a>
+            <p style="margin-top: 10px">
+                简.课是在线学习网校，包含绘画、剪辑、原画等数字培训课程，也囊括了传统学习课程。用碎片化时间解决你的绘画学习需求，学习，就上简.课！
+            </p>
+            <hr>
+        </div>
+        <div style="width: 1200px;text-align: center;margin:0 auto;color: #7286a0"  class="justify-content-between">
+            <a class="py-2 d-none d-md-inline-block" style="color:#7286a0;margin-right: 100px;
+  transition: color .15s ease-in-out;"
+               th:href="@{/index}">首页</a>
+            <a class="py-2 d-none d-md-inline-block" style="color:#7286a0;margin-right: 100px;
+  transition: color .15s ease-in-out;"
+               th:href="@{/subjects}">课程介绍</a>
+            <a class="py-2 d-none d-md-inline-block" style="color:#7286a0;margin-right: 100px;
+  transition: color .15s ease-in-out;"
+               th:href="@{/classes}">招生信息</a>
+            <a class="py-2 d-none d-md-inline-block" style="color:#7286a0;margin-right: 100px;
+  transition: color .15s ease-in-out;"
+               th:href="@{/viewwork}">优秀作品</a>
+            <a class="py-2 d-none d-md-inline-block" style="color:#7286a0;margin-right: 100px;
+  transition: color .15s ease-in-out;"
+               th:href="@{/reply}">留言板</a>
+            <a class="py-2 d-none d-md-inline-block" style="color:#7286a0;margin-right: 100px;
+  transition: color .15s ease-in-out;"
+               th:href="@{/article}">素材与咨讯</a>
+            <a class="py-2 d-none d-md-inline-block" style="color:#7286a0;
+  transition: color .15s ease-in-out;"
+               th:href="@{/index}">关于我们</a>
+
+            <div style="margin-top: 70px">
+                <h6 style="display: inline-block;">客服: &nbsp;</h6>
+                <a href="tencent://message/?uin=1305106541&Menu=yes& Service=300&sigT=42a1e5347953b64c5ff3980f8a6e644d4b31456cb0b6ac6b27663a3c4dd0f4aa14a543b1716f9d45" class="btn btn-outline-info">课程咨询</a>
+                <h6 style="display: inline-block;margin-left: 20px">邮箱: tsn778@126.com</h6>
+                <h6 style="display: inline-block;margin-left: 20px">联系电话: 18705759937</h6>
+
+
+
+
+            </div>
+
+
+        </div>
+        <div class="py-1" style="text-align: center">
+
+
+                        <hr>
+                        <div class="copyright-txt">
+                            Copyright © 2021 简.课
+                        </div>
+
+
+
+        </div>
+    </footer>
+</div>
+</body>
+</html>

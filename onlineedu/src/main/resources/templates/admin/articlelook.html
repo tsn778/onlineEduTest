@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/adminsrc/css/layui.css}">
+</head>
+<body>
+<div class="layui-fluid">
+    <div class="layui-row">
+        <form class="layui-form" >
+            <div class="layui-form-item">
+                <h4>标题：</h4>
+                <p th:text="${article.articlename}"></p>
+            </div>
+            <div class="layui-form-item">
+                <h4>作者：</h4>
+                <p th:text="${article.author}"></p>
+            </div>
+            <div class="layui-form-item">
+                <h4>类型：</h4>
+                <p th:text="${article.articletype}"></p>
+            </div><div class="layui-form-item">
+            <h4>创建时间：</h4>
+            <p th:text="${article.fristtime}"></p>
+        </div><div class="layui-form-item">
+            <h4>最后编辑时间:</h4>
+            <p th:text="${article.endtime}"></p>
+        </div>
+            <div class="layui-form-item">
+                <h4>简介：</h4>
+                <p th:text="${article.introduction}"></p>
+            </div>
+            <hr>
+            <div class="layui-form-item">
+                <h4>内容：</h4>
+                <p th:utext="${article.info}"></p>
+            </div>
+
+
+
+
+        </form>
+
+    </div>
+</div>
+<script th:src="@{/adminsrc/layui.js}"></script>
+
+<script>
+
+
+
+</script>
+</body>
+</html>

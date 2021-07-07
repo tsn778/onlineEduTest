@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8">
+
+    <title>登录</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sign-in/">
+
+    
+
+    <!-- Bootstrap core CSS -->
+<link th:href="@{assets/dist/css/bootstrap.min.css}" rel="stylesheet">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+    
+    <!-- Custom styles for this template -->
+    <link th:href="@{assets/css/signin.css}" rel="stylesheet">
+  </head>
+  <body class="text-center signinbgs" >
+<main class="border" style="background-color:rgb(239, 239, 250); width: 100%;
+max-width: 400px;
+height: 500px;
+padding: 15px;
+margin: auto;
+border-radius:25px;
+-moz-border-radius:25px;">
+<div class="form-signin">
+  <form id="login">
+    <img class="mb-4" src="img/icon.png" alt="" width="200" height="57">
+    <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+    <label for="inputEmail" class="visually-hidden">Account</label>
+    <input type="text" name="account" id="inputEmail" class="form-control" placeholder="请输入你的账户" required autofocus>
+    <label for="inputPassword" class="visually-hidden">Password</label>
+    <input type="password" name="password" id="inputPassword" class="form-control" placeholder="请输入你的密码" required>
+    <div class="mb-3">
+
+    </div>
+    <button class="w-100 btn btn-lg btn-primary" type="button" onclick="login()">Sign in</button>
+    <p class="mt-5 mb-3 text-muted">&copy; 2017-2020</p>
+  </form>
+</div>
+</main>
+<script th:src="@{assets/js/jquery-3.2.1.min.js}"></script>
+<script type="text/javascript">
+  function login(){
+    var data=$('#login').serialize();
+    $.ajax({
+      //几个参数需要注意一下
+      type: "POST",//方法类型
+      dataType: "json",//预期服务器返回的数据类型
+      url: "/validatelogin" ,//url
+      data: data,
+      success: function (result) {
+        console.log(result);//打印服务端返回的数据(调试用)
+        if(result.code==1){
+          alert(result.msg);
+          location.reload();
+        }
+        else
+        {
+          alert(result.msg);
+          location.href="/index";
+        }
+      },
+      error : function() {
+        alert("异常！");
+      }
+    });
+    return false;
+
+  }
+</script>
+
+    
+  </body>
+</html>

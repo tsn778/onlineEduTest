@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.tsn.mapper.ArticleMapper">
+
+    <select id="getArticles" resultType="Article">
+        select * from tb_article;
+    </select>
+
+    <select id="getArticleById" resultType="Article" parameterType="int">
+        select * from tb_article where id = #{id};
+    </select>
+    <select id="getArticleByName" resultType="Article" parameterType="String">
+        select * from tb_article where articlename = #{articlename};
+    </select>
+    <insert id="addArticle" parameterType="Article">
+        insert into tb_article(articlename,author,introduction,info,state,articletype,fristtime,endtime,filepath,editor)
+        values (#{articlename},#{author},#{introduction},#{info},#{state},#{articletype},#{fristtime},#{endtime},#{filepath},#{editor});
+    </insert>
+    <delete id="deleteArticle" parameterType="Article">
+        delete from tb_article where id = #{id};
+    </delete>
+    <update id="updateArticle" parameterType="Article">
+        Update tb_article
+        set articlename=#{articlename},author=#{author},introduction=#{introduction},info=#{info},state=#{state},articletype=#{articletype},fristtime=#{fristtime},endtime=#{endtime},filepath=#{filepath},editor=#{editor}
+        where id = #{id};
+
+    </update>
+    <select id="selectArticlesByWord" resultType="Article">
+        select * from tb_article
+        where articlename like concat('%',#{word},'%');
+    </select>
+</mapper>

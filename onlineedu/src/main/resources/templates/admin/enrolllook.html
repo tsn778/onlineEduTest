@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/adminsrc/css/layui.css}">
+</head>
+<body>
+<div class="layui-fluid">
+    <div class="layui-row">
+        <form class="layui-form" >
+           <div class="layui-form-item">
+            <label class="layui-form-label">班级名：</label>
+               <p th:text="${enroll.classes}"></p>
+           </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">姓名：</label>
+                <p th:text="${enroll.name}"></p>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">年龄：</label>
+                <p th:text="${enroll.age}"></p>
+            </div><div class="layui-form-item">
+            <label class="layui-form-label">性别：</label>
+            <p th:text="${enroll.gender}"></p>
+        </div><div class="layui-form-item">
+            <label class="layui-form-label">QQ号码:</label>
+            <p th:text="${enroll.qq}"></p>
+        </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">邮箱：</label>
+                <p th:text="${enroll.email}"></p>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">家庭地址：</label>
+                <p th:text="${enroll.address}"></p>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">基础情况：</label>
+                <p th:text="${enroll.basics}"></p>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">备注信息：</label>
+                <p th:text="${enroll.info}"></p>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">附件：</label>
+                <div th:if="${enroll.work}==null">
+                    <p>无</p>
+                </div>
+                <div th:if="${enroll.work}!=null">
+
+                    <a  class="layui-btn layui-btn-normal" th:href="@{/download(name=${enroll.getWork()})}">点击下载附件</a>
+                </div>
+
+            </div>
+
+
+
+        </form>
+
+    </div>
+</div>
+<script th:src="@{/adminsrc/layui.js}"></script>
+
+<script>
+
+
+
+</script>
+</body>
+</html>

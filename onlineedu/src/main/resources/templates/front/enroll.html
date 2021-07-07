@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:with="title='报名',active='classes'">
+<head th:replace="front/header::headerFragment(${title},${active})">
+
+</head>
+<body>
+
+<header class="site-header sticky-top py-3" th:replace="front/header::header-body">
+
+</header>
+<main>
+
+
+
+    <div class="container py-3">
+        <img src="/img/poster7.jpg" class="d-block w-100 img-thumbnail " alt="...">
+
+
+    </div>
+    <div class="container">
+        <div class="py-5 text-center">
+            <h2>报名</h2>
+            <p class="lead">欢迎加入简.课,期望我们互相学习,互相帮忙,进取努力,共同提高!请认真填写您的相关信息。</p>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <h4 class="mb-3">请填写</h4>
+                <form class="needs-validation" id="FormID">
+
+
+                    <div class="mb-3">
+                        <label>姓名</label>
+                        <div class="input-group">
+
+                            <input type="text" class="form-control"  name="name" placeholder="请填写你的真实姓名" required="">
+                            <div class="invalid-feedback" style="width: 100%;">
+                                请输入你的姓名
+                            </div>
+                        </div>
+                    </div>
+
+                        <input type="hidden" name="classes" required="required">
+
+                    <div class="mb-3">
+                        <label>年龄</label>
+                        <input type="text" class="form-control" name="age" required="required"
+                               placeholder="请填写你的真实年龄" >
+
+                    </div>
+
+                    <h4 class="mb-3">性别</h4>
+
+                    <div class="d-block my-3">
+                        <div class="custom-control custom-radio">
+                            <input id="credit" name="gender" type="radio" class="custom-control-input" value="男"  checked="" required="">
+                            <label class="custom-control-label" for="credit">男</label>
+                        </div>
+                        <div class="custom-control custom-radio">
+                            <input id="debit" name="gender" type="radio" class="custom-control-input" value="女"  required="">
+                            <label class="custom-control-label" for="debit">女</label>
+                        </div>
+
+                    </div>
+                    <div class="mb-3">
+                        <label for="email">Email <span class="text-muted">(Optional)</span></label>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="you@example.com" required="required">
+                        <div class="invalid-feedback">
+                            Please enter a valid email address for shipping updates.
+                        </div>
+                    </div>
+                    <input type="hidden" class="form-control" name="classes" th:value="${eclasses.getClassname()}">
+                    <div class="mb-3">
+                        <label >手机号码</label>
+                        <input type="text" class="form-control" id="address" name="phonenumber" required="required" placeholder="请填写真实的手机号码">
+
+                    </div>
+                    <div class="mb-3">
+                        <label>QQ</label>
+                        <input type="text" class="form-control" name="qq" required="required"
+                               placeholder="请填写你的qq号码" >
+
+                    </div>
+                    <div class="mb-3">
+                        <label>地址</label>
+                        <input type="text" class="form-control" name="address" required="required"
+                               placeholder="请填写你的居住地址" >
+
+                    </div>
+                    <div class="mb-3">
+                        <label>基础情况</label>
+                        <input type="text" class="form-control" name="basics" required="required"
+                               placeholder="请填写你的基础情况" >
+
+                    </div>
+                    <div class="mb-3">
+                        <label>备注</label>
+                        <textarea  class="form-control" name="info"
+                               placeholder="有什么想说的话，备注" >
+                        </textarea>
+
+                    </div>
+                    <div class="mb-3">
+                        <label>作品</label>
+                        <p>请上传压缩文件</p>
+                        <input type="file" class="form-control-file" id="file">
+                        <button id="upload" type="button">上传</button>
+                        <input type="hidden" name="work" id="work">
+
+                    </div>
+                    <div class="mb-3">
+                        <label>班级相关信息</label>
+                        <table class="table">
+                            <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">班级名称</th>
+                                <th scope="col">主讲师</th>
+                                <th scope="col">总课时</th>
+                                <th scope="col">开课时间</th>
+                                <th scope="col">总金额</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr style="color: red">
+                                <th scope="row">1</th>
+                                <td th:text="${eclasses.getClassname()}"></td>
+                                <td th:text="${eclasses.getTeacher()}"></td>
+                                <td th:text="${eclasses.getPrice()}"></td>
+                                <td th:text="${eclasses.getStarttime()}"></td>
+                                <td th:text="${eclasses.getPrice()}"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                    <div class="mb-3">
+                        <label>相关信息要求协议：</label>
+                        <p>
+                            1、没有认真、完整地看完招生简章所有内容<br>
+                            2、不热爱动漫、游戏、影视其中的任何一项<br>
+                            3、熬夜、网瘾、每天游戏耗时过多<br>
+                            4、没有绘画基本功和板绘经验<br>
+                            5、身心条件（如：患传染类、心理类疾病者、色盲色弱、家族遗传病史等因素导致的）不能适应长期高强度学习<br>
+                            6、未满18周岁，家人不支持<br>
+                            7、盗过图<br>
+                        </p>
+
+                    </div>
+
+                    <div class="form-group">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+                            <label class="form-check-label" for="invalidCheck">
+                                同意协议和选项
+                            </label>
+                            <div class="invalid-feedback">
+                                您必须同意才能提交。
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr class="mb-4">
+                    <button class="btn btn-primary btn-lg btn-block" type="button" onclick="enroll()">报名</button>
+                    <button class="btn  btn-lg btn-block" type="reset" >重置</button>
+
+                </form>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="py-5">
+
+    </div>
+</main>
+
+<footer th:replace="front/header::header-footer"></footer>
+
+
+<script th:src="@{assets/dist/js/bootstrap.bundle.min.js}"></script>
+<script th:src="@{assets/dist/js/bootstrap.js}"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+<script th:src="@{assets/js/jquery-3.2.1.min.js}"></script>
+<script type="text/javascript">
+
+    $(function () {
+        $('#upload').click(function () {
+
+            var files = $('#file')[0].files //获取上传的文件列表
+            var formData = new FormData(); //新建一个formData对象
+            formData.append("file", files[0]); //append()方法添加字段
+            $.ajax({
+                type: 'post',
+                url: "/uploadenroll", //上传文件的请求路径必须是绝对路劲
+                data: formData,
+                cache: false,
+                processData: false,
+                contentType: false,
+
+                success: function (result) {
+                console.log(result);//打印服务端返回的数据(调试用)
+
+
+                    $('#work').val(result.data.filename);
+
+
+            },
+            error : function() {
+                alert("异常！");
+            }
+
+
+        });
+    });
+    });
+
+    function enroll() {
+        var data=$('#FormID').serialize();
+//序列化获得表单数据，结果为：user_id=12&user_name=John&user_age=20
+
+        // var submitData=decodeURIComponent(data,true);
+//submitData是解码后的表单数据，结果同上
+
+        // $.ajax({
+        //     url:'/registeruser',
+        //     type:'POST',
+        //     data:submitData,
+        //     cache:false,//false是不缓存，true为缓存
+        //     async:true,//true为异步，false为同步
+        //     beforeSend:function(){
+        //         //请求前
+        //     },
+        //     success:function(result){
+        //
+        //         //请求成功时
+        //         if(result.code==1){
+        //             alert(result.msg);
+        //             location.reload();
+        //         }
+        //         else
+        //         {
+        //         alert(result.msg);
+        //         location.href="/login";
+        //         }
+        //     },
+        //     complete:function(){
+        //         //请求结束时
+        //     },
+        //     error:function(){
+        //         //请求失败时
+        //     }
+        // });
+
+        if(!$('#invalidCheck').is(':checked'))
+            alert("您必须同意才能提交。");
+        else{
+
+            var index="请仔细确认信息后再作提交！";
+            var r=confirm(index);
+            if (r==true)
+            {
+                $.ajax({
+                    //几个参数需要注意一下
+                    type: "POST",//方法类型
+                    dataType: "json",//预期服务器返回的数据类型
+                    url: "/addenroll" ,//url
+                    data: data,
+                    success: function (result) {
+                        console.log(result);//打印服务端返回的数据(调试用)
+
+                            alert(result.msg);
+
+
+
+                    },
+                    error : function() {
+                        alert("异常！");
+                    }
+                });
+            }
+            else{
+                return false;
+            }
+
+        }
+
+
+        // }
+        return false;
+    }
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html  lang="en" xmlns:th="http://www.thymeleaf.org" th:with="title='管理中心',active='home'">
+<header th:replace="admin/header::headerFragment(${title},${active})"></header>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+  <div th:replace="admin/header::header-body"></div>
+  <div class="layui-body">
+    <!-- 内容主体区域 -->
+
+    <div class="layui-fluid" >
+     <h1>欢迎您，[[${session.admin.getRole()}]][[${session.admin.getUsername()}]]</h1>
+    </div>
+  </div>
+
+  
+  <div class="layui-footer">
+    <!-- 底部固定区域 -->
+    © layui.com - 底部固定区域
+  </div>
+</div>
+<script th:src="@{/adminsrc/layui.js}"></script>
+<script>
+//JavaScript代码区域
+layui.use('element', function(){
+  var element = layui.element;
+  
+});
+</script>
+</body>
+</html>

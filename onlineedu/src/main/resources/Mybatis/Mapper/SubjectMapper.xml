@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.tsn.mapper.SubjectMapper">
+
+    <select id="getSubjects" resultType="Subject">
+        select * from tb_subject;
+    </select>
+
+    <select id="getSubjectById" resultType="Subject" parameterType="int">
+        select * from tb_subject where subid = #{subid};
+    </select>
+    <select id="getSubjectByName" resultType="Subject" parameterType="String">
+        select * from tb_subject where subname = #{subname};
+    </select>
+    <insert id="addSubject" parameterType="Subject">
+        insert into tb_subject(subname,teacher,period,introduction,subinfo,state,subtype,regtime,regend,coverpath)
+        values (#{subname},#{teacher},#{period},#{introduction},#{subinfo},#{state},#{subtype},#{regtime},#{regend},#{coverpath});
+    </insert>
+    <delete id="deleteSubject" parameterType="Subject">
+        delete from tb_subject where subid = #{subid};
+    </delete>
+    <update id="updateSubject" parameterType="Subject">
+        Update tb_subject
+        set subname=#{subname},teacher=#{teacher},period=#{period},introduction=#{introduction},subinfo=#{subinfo},state=#{state},subtype=#{subtype},regtime=#{regtime},regend=#{regend},coverpath=#{coverpath}
+            where subid = #{subid};
+
+    </update>
+    <select id="getSubjectsByWord" resultType="Subject" >
+        select * from tb_subject where subname like concat('%',#{word},'%');
+    </select>
+</mapper>

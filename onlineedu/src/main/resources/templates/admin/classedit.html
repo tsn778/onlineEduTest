@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html  lang="en" xmlns:th="http://www.thymeleaf.org" th:with="title='班级编辑',active='classedit'">
+<header th:replace="admin/header::headerFragment(${title},${active})"></header>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <div th:replace="admin/header::header-body"></div>
+    <div class="layui-body">
+        <div class="layui-fluid">
+            <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+                <legend>编写班级</legend>
+            </fieldset>
+            <form class="layui-form layui-form-pane" >
+                <input type="hidden" name="cid" th:value="${classes?.getCid()}">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">班级名</label>
+                    <div class="layui-input-inline" style="width: 700px;">
+                        <input type="text" name="classname" th:value="${classes?.getClassname()}" required  lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">主讲师</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="teacher" th:value="${classes?.getTeacher()}" required lay-verify="required" placeholder="请输入讲师名称" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">总课时</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="period" th:value="${classes?.getPeriod()}"  required lay-verify="required" placeholder="请总课时时间" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">开班时间</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="starttime" id="starttime" th:value="${classes?.getStarttime()}"  required lay-verify="required" placeholder="开班时间" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">报名时间</label>
+                        <div class="layui-input-inline" style="width: 300px;">
+                            <input type="text" name="regtime" id="start" placeholder="开始时间" th:value="${classes?.getRegtime()}" autocomplete="off" class="layui-input">
+                        </div>
+                        <div class="layui-form-mid">-</div>
+                        <div class="layui-input-inline" style="width: 300px;">
+                            <input type="text" name="regend" id="end" placeholder="结束时间" th:value="${classes?.getRegend()}" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">简要介绍</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="introduction" th:value="${classes?.getIntroduction()}" required lay-verify="required" placeholder="简要介绍" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">价格</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="price" th:value="${classes?.getPrice()}"  required lay-verify="required" placeholder="请总课时时间" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">基础</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="workis" th:value="${classes?.getWorkis()}"  required lay-verify="required" placeholder="请总课时时间" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <hr><br>
+                <label class="layui-form-label">封面</label>
+                <div class="layui-upload-drag" id="cover">
+                    <i class="layui-icon">&#xe67c;</i>
+                    <p>点击上传，或将图片拖拽到此处</p>
+                    <div
+                            id="uploadDemoView">
+                        <hr>
+                        <img th:src="${classes?.getCoverpath()}" alt="" style="max-width: 196px">
+
+                    </div>
+                    <input type="hidden" name="coverpath" id="uploadsrc" th:value="${classes?.getCoverpath()}">
+                </div>
+
+                <hr><br>
+                <div class="layui-form-item layui-form-text">
+                    <label class="layui-form-label">内容</label>
+                    <div  class="layui-input-block"  style="width: 100%;">
+
+                        <div class="layui-form-item">
+      <textarea name="classinfo" id="demo" th:utext="${classes!=null and classes.getClassinfo() !=null}?${classes.getClassinfo()}: ''" class="layui-hide" lay-verify="content">
+      </textarea>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+                        <button  class="layui-btn layui-btn-primary" lay-submit lay-filter="refresh">重置</button>
+                    </div>
+                </div>
+            </form>
+
+
+        </div>
+    </div>
+    <div class="layui-footer">
+        <!-- 底部固定区域 -->
+        © layui.com - 底部固定区域
+    </div>
+</div>
+<script th:src="@{/adminsrc/layui.js}"></script>
+<script>
+    layui.use('element', function(){
+        var element = layui.element;
+
+    });
+    layui.use('laydate', function(){
+        var laydate = layui.laydate;
+
+        //执行一个laydate实例
+        laydate.render({
+            elem: '#starttime' //指定元素
+        });
+        laydate.render({
+            elem: '#start' //指定元素
+        });
+        laydate.render({
+            elem: '#end' //指定元素
+        });
+    });
+    layui.use(['form', 'layedit','upload', 'element'], function(){
+        var layedit = layui.layedit
+            ,upload = layui.upload
+            ,element = layui.element;
+
+        var index = layedit.build('demo', {
+            //hideTool: ['image']
+            height: 600,//设置编辑器高度
+            uploadImage: {
+                url: '/uploadimage'
+                ,type: 'post'
+            }
+            //,tool: []
+            //,height: 100
+        });
+
+        // getChoose.onclick = function(){
+        //     alert(layedit.getSelection(index));
+        // };
+
+
+        var form = layui.form,
+            $ = layui.$;
+        form.verify({
+            //content富文本域中的lay-verify值
+            content: function() {
+                layedit.sync(index);
+            }
+        });
+        upload.render({
+            elem: '#cover'
+            ,url: '/uploadimage'
+            ,accept: 'images' //只允许上传图片
+            ,done: function(res){
+                layer.msg('上传成功');
+                // layui.$('#uploadDemoView').removeClass('layui-hide').find('img').attr('src', res.data.src);
+                layui.$('#uploadDemoView').find('img').attr('src', res.data.src);
+                layui.$('#uploadsrc').val(res.data.src);
+                console.log(res);
+
+            }
+        });
+
+        //监听提交
+        form.on('submit(formDemo)', function(data){
+            var datas = data.field;
+
+            var index =  layer.msg(JSON.stringify(datas));
+            datas.shstate = 1;
+            console.log(datas);
+            // $.ajax({
+            //     url: '/addsubject',
+            //     type: 'post',
+            //     data: data.field,
+            //     success: function (data) {
+            //         layer.msg(data)
+            //     }
+            // });
+            $.post("/addClass", datas, function (s) {
+                setTimeout(function () {
+                    layer.close(index);
+                    layer.alert(s.msg);
+                }, 1500);
+            });
+            return false;
+        });
+        form.on('submit(refresh)', function(data) {
+            location.reload();
+        });
+    });
+</script>
+</body>
+</html>

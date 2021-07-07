@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:with="title='优秀作品',active='works'">
+<head th:replace="front/header::headerFragment(${title},${active})">
+
+</head>
+<body>
+
+<header class="site-header sticky-top py-3" th:replace="front/header::header-body">
+
+</header>
+<main>
+    
+     
+
+     <div class="container py-3"> 
+        <img src="/img/poster4.jpg" class="d-block w-100 img-thumbnail " alt="...">
+         
+        <div class="py-5"><h4>分类：
+
+        <hr>
+        筛选：
+        <button type="button" class="btn btn-outline-primary">最新</button>
+        <button type="button" class="btn btn-outline-primary">默认</button>
+
+    </h4>
+        </div>
+        
+
+        
+
+
+        <div id="contentId" >
+            <div class="col-sm-4 box py-1" th:each="work:${viewworks}"><a href=""><img th:src="${work.getPicpath()}" th:alt="${work.getWorkname()}">
+            </a></div>
+<!--            <div class="col-sm-4 box py-1"><img src="/img/subject4.png" alt="">-->
+<!--                </div>-->
+<!--            <div class="col-sm-4 box py-1"><img src="/img/class1.jpg" alt=""></div>-->
+<!--            <div class="col-sm-4 box py-1"><img src="/img/subject4.png" alt=""></div>-->
+
+<!--            <div class="col-sm-4 box py-1"><img src="/img/subject5.jpg" alt=""></div>-->
+<!--            <div class="col-sm-4 box py-1"><img src="/img/subject1.png" alt=""></div>-->
+<!--            <div class="col-sm-4 box py-1"><img src="/img/subject3.png" alt=""></div>-->
+<!--            <div class="col-sm-4 box  py-1"><img src="/img/work1.jpg" alt=""></div>-->
+<!--            <div class="col-sm-4 box py-1"><img src="/img/work3.png" alt=""></div>-->
+
+<!--            <div class="col-sm-4 box py-1"><img src="/img/work4.jpg" alt=""></div>-->
+<!--            <div class="col-sm-4 box py-1"><img src="/img/class2.jpg" alt=""></div>-->
+<!--            <div class="col-sm-4 box py-1"><img src="/img/class3.jpg" alt=""></div>-->
+<!--            <div class="col-sm-4 box py-1"><img src="/img/class4.jpg" alt=""></div>-->
+<!--            <div class="col-sm-4 box py-1"><img src="/img/bg3.jpg" alt=""></div>-->
+        </div>
+    
+           
+     
+
+     </div>
+     <div>
+
+        <img src="img/poster3.jpg" class="d-block w-100 img-thumbnail " alt="...">
+     </div>
+
+
+</main>
+<footer th:replace="front/header::header-footer"></footer>
+<script th:src="@{assets/js/jquery-3.2.1.min.js}"></script>
+<script th:src="@{assets/js/waterfall.js}"></script>
+<script type="text/javascript">
+//         var contentchildren=$("#contentId").children();
+// var itemCount=contentchildren.length;
+// for (var j =0; j<itemCount; j++) {
+// (contentchildren.eq(j)).css({"width":"200px","display":"block","border":"2px solid black"});
+// }
+
+putSmartWater("#contentId",3);
+</script>
+</body>
+</html>
